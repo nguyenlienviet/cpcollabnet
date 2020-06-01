@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div>{{ researcher.name|title }}</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Cited By</th>  
+        <th scope="col">Year</th>  
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in collabs %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>
+            <div>{{ c.title }}</div>
+            <div>{{ c.authors|title }}</div>
+            <div>{{ c.venue }}</div>
+          </td>
+          <td>{{ c.citations_count }}</td>
+          <td>{{ c.year }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Collaboration Count</th>  
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in collaborators %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ c.name|title }}</td>
+          <td>{{ c.count }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a target="_blank" style="outline:none;"><canvas width="960" height="960"></canvas></a>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var rid_to_collaborator = {{ rid_to_collaborator|safe }}
+    var graph = {{ graph|safe }}
+  </script>
+  <script src="{% static 'network.js' %}"></script>
+{% endblock %}

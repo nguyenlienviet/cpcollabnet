@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for r in researchers %}
+    <div>
+      <a href="{% url 'researcher' r.rid %}">{{ r.name|title }}</a>
+    </div>
+  {% endfor %}
+{% endblock %}
