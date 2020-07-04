@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% for r in researchers %}
+  {% for p in pub_submissions %}
     <div>
-      <a href="{% url 'researcher' r.rid %}">{{ r|title }}</a>
+      <a href="{% url 'pub_review' p.id %}">{{ p }}</a>
     </div>
   {% endfor %}
 {% endblock %}

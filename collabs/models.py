@@ -55,6 +55,9 @@ class Collaboration(models.Model):
         managed = False
         db_table = 'Collaboration'
 
+    def __str__(self):
+        return self.title
+
 
 class Collaborations2(models.Model):
     cid = models.AutoField(primary_key=True)
@@ -190,6 +193,9 @@ class Researcher(models.Model):
         managed = False
         db_table = 'Researcher'
 
+    def __str__(self):
+        return self.name
+
 
 class Researchers2(models.Model):
     rid = models.AutoField(primary_key=True)
@@ -210,3 +216,13 @@ class Researchers2(models.Model):
     class Meta:
         managed = False
         db_table = 'Researchers2'
+
+class PubSubmission(models.Model):
+    title = models.TextField(max_length=400)
+    authors = models.TextField()
+    year = models.CharField(max_length=4)
+    venue = models.CharField(max_length=300, blank=True, null=True)
+    type = models.CharField(max_length=12, blank=True, null=True)
+
+    def __str__(self):
+        return self.title

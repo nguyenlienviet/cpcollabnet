@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+
 from collabs import views
 
 urlpatterns = [
@@ -22,5 +24,15 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'researchers/<int:rid>/', views.researcher, name='researcher'),
     path(r'search/', views.search, name='search'),
-    # path(r'django_plotly_dash/', include('django_plotly_dash.urls')),
+    path(r'pub_submit/', views.pub_submit, name='pub_submit'),
+    path(r'pub_submissions/', views.pub_submissions, name='pub_submissions'),
+    path(r'pub_review/<int:pk>/', views.pub_review, name='pub_review'),
+    path(r'accounts/login/',
+         auth_views.LoginView.as_view(template_name='registration/login.html'),
+         name='login'),
+    path(r'accounts/logout/',
+         auth_views.LogoutView.as_view(
+                template_name='registration/logout.html'),
+         name='logout'),
+    # path(r'accounts/', include('django.contrib.auth.urls')),
 ]

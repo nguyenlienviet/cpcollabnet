@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(Researcher)
 admin.site.register(Collaboration)
 admin.site.register(Author)
+admin.site.register(PubSubmission)
